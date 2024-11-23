@@ -13,30 +13,43 @@ const CandidateSearch = () => {
     email: '',
   });
 
-  const searchRandomCandidate = async ()=> {
+  const searchRandomCandidate = async () => {
     const users = await searchGithub();
     if (users.length > 0) {
       const randomUser = users[Math.floor(Math.random() * users.length)];
       const userDetails = await searchGithubUser(randomUser.login);
       setCandidate(userDetails);
-    }};
+    }
+  };
 
   useEffect(() => {
     searchRandomCandidate();
   }, []);
 
+  const addToPotentialCandiates = () => {
+    let parsedCandidates: GithubUser[] = [];
+    const storedCandidates = localStorage.getItem('newCandidate');
+    if (storedCandidates) {
+      parsedCandidates = JSON.parse(storedCandidates);
+    }
+
+    parsedCandidates.push(candidate);
+    localStorage.setItem('newCandidate', JSON.stringify(parsedCandidates));
+  };
+
   return (
     <section>
-       <div>
-          <h2>{candidate.name || 'No Name Available'}</h2>
-          <img src={candidate.avatar_url} alt={candidate.login} width={150} />
-          <p><strong>Username:</strong> {candidate.login}</p>
-          <p><strong>Company:</strong> {candidate.company || 'Not Provided'}</p>
-          <p><strong>Bio:</strong> {candidate.bio || 'No bio available'}</p>
-          <p><strong>Location:</strong> {candidate.location || 'Not Provided'}</p>
-          <p><strong>Email:</strong> {candidate.email || 'Not Provided'}</p>
-        </div>
-      <button onClick={searchRandomCandidate}>Search Another Candidate</button>
+      <div>
+        <h2>{candidate.name || 'No Name Available'}</h2>
+        <img src={candidate.avatar_url} alt={candidate.login} width={150} />
+        <p><strong>Username:</strong> {candidate.login}</p>
+        <p><strong>Company:</strong> {candidate.company || 'Not Provided'}</p>
+        <p><strong>Bio:</strong> {candidate.bio || 'No bio available'}</p>
+        <p><strong>Location:</strong> {candidate.location || 'Not Provided'}</p>
+        <p><strong>Email:</strong> {candidate.email || 'Not Provided'}</p>
+      </div>
+      <button onClick={() => addToPotentialCandiates?.()}>SAVE</button>
+      <button onClick={searchRandomCandidate}>NEXT</button>
 
     </section>
   );
