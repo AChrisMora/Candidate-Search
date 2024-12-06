@@ -15,11 +15,11 @@ This program is functioned to search github users and gives the user the option 
 
 ## Installation
 
-You can install this through the repo.
+You can check out the render deployment or run it locally. To run locally go to your terminal and run the following commands, npm install, npm run build, and npm run dev. Side note if you run locally you'll need your own github API key.
 
 ## Usage
     
-To use this program you would need to use your own github key. I'll set it up on render so there will be no need but for now that is the method.
+Check out the render deployment here==> https://candidate-search-1-fl7a.onrender.com/
 
 ## License
 
@@ -31,8 +31,9 @@ If you'd like to contribute, work on something productive instead.
     
 ## Tests
     
-I'll add a video showcasing the program soon.
-    
+Here's a cool screenshot.
+[!Screenshot of app](/Assets/Screenshot.png)
+
 ## Questions
     
 -Github: [AChrisMora](https://github.com/AChrisMora)
